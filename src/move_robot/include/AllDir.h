@@ -494,7 +494,7 @@ bool alldir::qrcodemove()
 				}
 
 				std::vector<unsigned char> command;
-				sendreceive.Package_testWheel_encoder(vx, vy, W_rw, 0, command);
+				sendreceive.Package_testWheel_encoder(vx, vy, W_rw, 1, command);
 				SendPackage(command);
 				return false ;
 			}
