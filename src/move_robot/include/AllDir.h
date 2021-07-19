@@ -237,6 +237,7 @@ bool alldir::qrcodemove()
 			trans_angle = qrcode_A + 90.0;
 			if(trans_angle >= 360.0)trans_angle = trans_angle - 360.0;
 	}
+	std::cout<<"qrcode_direction "<<qrcode_direction <<std::endl;
 	std::cout<<"qrcode_A "<<trans_angle <<std::endl;
 	float qrcode_th = float(trans_angle) / 180.0 * M_PI;
 	if(qrcode_th>M_PI) qrcode_th=qrcode_th-2*M_PI;
@@ -494,7 +495,7 @@ bool alldir::qrcodemove()
 				}
 
 				std::vector<unsigned char> command;
-				sendreceive.Package_testWheel_encoder(vx, -vy, W_rw, 1, command);
+				sendreceive.Package_testWheel_encoder(vx, vy, W_rw, 1, command);
 				SendPackage(command);
 				return false ;
 			}
@@ -506,7 +507,7 @@ void alldir::qrcodeCallback(const move_robot::qrcode& msg)
 	qrcode_y = (float)msg.y/10;
 	qrcode_A = (float)msg.A/10;
 	qrcode_tag = msg.Tag;
-	//std::cout<<"qrcode_x = "<<qrcode_x<<" qrcode_y = "<<qrcode_y<<" qrcode_A = "<<qrcode_A<<" qrcode_tag = "<<qrcode_tag<<std::endl;
+	std::cout<<"qrcode_x = "<<qrcode_x<<" qrcode_y = "<<qrcode_y<<" qrcode_A = "<<qrcode_A<<" qrcode_tag = "<<qrcode_tag<<std::endl;
 	if(qrcode_tag != 0)
 	{
 		isReveice_qrcode = true;
